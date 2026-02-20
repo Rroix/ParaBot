@@ -5,14 +5,6 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import discord
 from discord.ext import commands
 
-# ---------- CONFIG ----------
-TOKEN = os.getenv("DISCORD_TOKEN")
-if not TOKEN:
-    raise SystemExit("Missing DISCORD_TOKEN environment variable.")
-# ----------------------------
-
-
-# ---------- HTTP SERVER (Render Web Service) ----------
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -30,10 +22,8 @@ def run_http_server():
 
 
 threading.Thread(target=run_http_server, daemon=True).start()
-# -----------------------------------------------
 
 
-# ---------- DISCORD BOT ----------
 intents = discord.Intents.default()
 intents.guilds = True
 intents.members = True
