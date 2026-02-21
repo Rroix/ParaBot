@@ -35,9 +35,9 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user} ({bot.user.id})")
-
-
-# Load your cog(s)
-bot.load_extension("cogs.thread_actions")
+    # Load extension once
+    if not getattr(bot, "_cogs_loaded", False):
+        bot.load_extension("cogs.thread_actions")
+        bot._cogs_loaded = True
 
 bot.run(TOKEN)
