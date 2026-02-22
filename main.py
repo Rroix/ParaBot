@@ -40,4 +40,4 @@ async def on_ready():
         bot.load_extension("cogs.thread_actions")
         bot._cogs_loaded = True
 
-bot.run(TOKEN)
+bot.run(os.getenv("TOKEN"))
