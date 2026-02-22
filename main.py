@@ -31,13 +31,10 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+bot.load_extension("cogs.thread_actions")
 
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user} ({bot.user.id})")
-    # Load extension once
-    if not getattr(bot, "_cogs_loaded", False):
-        bot.load_extension("cogs.thread_actions")
-        bot._cogs_loaded = True
 
 bot.run(os.getenv("TOKEN"))
